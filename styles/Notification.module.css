@@ -1,0 +1,13 @@
+.notificar{
+    animation: appear 1s ease-in-out 1;
+}
+@keyframes appear{
+    from{
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
