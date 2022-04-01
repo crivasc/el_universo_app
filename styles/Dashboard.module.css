@@ -1,0 +1,24 @@
+.open{
+    animation: abrir 1s ease-in-out 1;
+    width: 300px;
+}
+.close{
+    animation: cerrar 1s ease-in-out 1;
+}
+
+@keyframes abrir {
+    from{
+        width: 4rem;
+    }
+    to{
+        width: 300px;
+    }
+}
+@keyframes cerrar{
+    from{
+        width: 300px;
+    }
+    to{
+        width: 4rem;
+    }
+}

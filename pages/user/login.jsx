@@ -117,7 +117,7 @@ const Login = () => {
 
             <section>
               <div className="relative text-gray-400 hover:text-sky-600 mb-4">
-                <HiOutlineUser size={25} className='absolute left-0 top-2 trasition duration-200' />
+                <HiOutlineUser size={25} className='absolute left-0 top-2 transition duration-200' />
                 <input type="email"
                   name='email'
                   className="w-full text-gray-600 pl-8 py-2 border-solid border-b-2 focus:border-sky-500 border-gray-400 outline-none"
@@ -126,7 +126,7 @@ const Login = () => {
               </div>
 
               <div className="relative text-gray-400 hover:text-sky-600 mb-4">
-                <RiLock2Line size={25} className='absolute left-0 top-2 trasition duration-200' />
+                <RiLock2Line size={25} className='absolute left-0 top-2 transition duration-200' />
                 <input type="password"
                   name='password'
                   className='w-full text-gray-600 pl-8 py-2 border-solid border-b-2 focus:border-sky-500 border-gray-400 outline-none'
@@ -136,7 +136,7 @@ const Login = () => {
 
               <div className="text-center">
                 <button className='w-10/12 mx-auto my-6 p-4 rounded-full bg-sky-600 hover:bg-sky-800 text-white text-xl
-                                trasition duration-200 drop-shadow-xl hover:drop-shadow-md'
+                                transition duration-200 drop-shadow-xl hover:drop-shadow-md'
                   onClick={loginUser}>LOGIN</button>
               </div>
 
@@ -151,21 +151,21 @@ const Login = () => {
                                   checked:border-sky-600 focus:outline-none p-3 align-top float-left mr-2 cursor-pointer'
                     onClick={rememberHandle} />
                   {check ? <BsFillCheckCircleFill className="absolute left-0 text-sky-600" size={25} /> : null}
-                  <label className="trasition duration-200" htmlFor="remember">Remember me</label>
+                  <label className="transition duration-200" htmlFor="remember">Remember me</label>
                 </div>
                 <Link href='/recover'><a className="border-dashed border-b-2 border-sky-600 text-sky-500 hover:text-sky-600">Recover password</a></Link>
               </div>
 
-              <div className="flex items-center justify-between mt-6 trasition duration-200 text-gray-400 hover:text-sky-600">
+              <div className="flex items-center justify-between mt-6 transition duration-200 text-gray-400 hover:text-sky-600">
                 <span>Iniciar con</span>
                 <div className='flex items-center justify-between grid grid-flow-col gap-4 text-gray-400'>
                   <button 
-                    className="outline-0 bg-none border-none hover:text-red-600 trasition duration-200"
+                    className="outline-0 bg-none border-none hover:text-red-600 transition duration-200"
                     onClick={signUpGoogle}>
                       <FaGoogle size={30} />
                   </button>
-                  <Link href="/b"><a className="hover:text-blue-600 trasition duration-200"><FaFacebookF size={30} /></a></Link>
-                  <Link href="/c"><a className="hover:text-sky-400 trasition duration-200"><FaTwitter size={35} /></a></Link>
+                  <Link href="/b"><a className="hover:text-blue-600 transition duration-200"><FaFacebookF size={30} /></a></Link>
+                  <Link href="/c"><a className="hover:text-sky-400 transition duration-200"><FaTwitter size={35} /></a></Link>
                 </div>
               </div>
 
