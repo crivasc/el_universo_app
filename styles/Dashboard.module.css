@@ -1,9 +1,9 @@
 .open{
-    animation: abrir 1s ease-in-out 1;
+    animation: abrir .3s ease-in-out 1;
     width: 300px;
 }
 .close{
-    animation: cerrar 1s ease-in-out 1;
+    animation: cerrar .3s ease-in-out 1;
 }
 
 @keyframes abrir {

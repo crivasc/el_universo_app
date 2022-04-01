@@ -1,12 +1,16 @@
 import Head from 'next/head';
 import styles from '../styles/Dashboard.module.css';
-import {CgMenuLeftAlt, CgMenuRightAlt} from 'react-icons/cg';
-import {useState} from 'react';
+import { CgMenuLeftAlt, CgMenuRightAlt } from 'react-icons/cg';
+import { BsNewspaper } from 'react-icons/bs';
+import {MdDashboard} from 'react-icons/md';
+import { useState } from 'react';
+import AsideNav from '../components/AsideNav';
 
 export default function Home() {
   const [sidebar, setSidebar] = useState(true);
+  const [section, setSection] = useState('Dashboard');
 
-  const handleSidebar=(e)=>{
+  const handleSidebar = (e) => {
     !sidebar ? setSidebar(true) : setSidebar(false);
   }
 
@@ -18,14 +22,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex items-top justify-center">
-        <aside className={
-          `${ sidebar 
-              ? styles.open 
-              : styles.close
-            } h-screen bg-sky-500`
-          }>
-          Saidbar
+        {/*Sidebar*/}
+        <aside className={`${sidebar ? styles.open : styles.close} 
+              h-screen bg-slate-800`}>
+
+          <div className={`
+              ${sidebar ? 'py-4 px-6 flex items-center justify-center' : 'p-4'} 
+              bg-sky-500 text-white
+            `}>
+            <BsNewspaper size={40} className="mx-auto" alt='Administración'/>
+            <h1 className="w-full text-center font-bold text-xl">NEWS</h1>
+          </div>
+
+          <div className="py-6 mt-4 text-slate-400 text-center">
+            {!sidebar ? <MdDashboard size={35} className='mx-auto'/> : <h2 className='px-4'>Administración</h2>}  
+          </div>
+          <AsideNav status={sidebar} section={section} /> 
         </aside>
+        {/***/}
+        {/*Sección de contenidos*/}
         <section className="bg-green-500 w-full h-screen">
           <header>
             <div className="sideControl relative">
@@ -33,12 +48,13 @@ export default function Home() {
                 onClick={handleSidebar}>
                 {sidebar ? <CgMenuLeftAlt size={35} /> : <CgMenuRightAlt size={35} />}
               </button>
-            </div>  
+            </div>
             heading
           </header>
           <div className="content">content</div>
           <footer>footer</footer>
         </section>
+        {/***/}
       </main>
     </div>
   )
