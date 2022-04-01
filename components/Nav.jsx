@@ -1,11 +1,30 @@
-import Link from "next/link";
+import { FaPowerOff } from "react-icons/fa";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import UserPic from "./UserPic";
+import {FaUserCircle} from 'react-icons/fa'
 
-const Nav = () => {
+const Nav = ({userData}) => {
+
+    const { push } = useRouter();   
+
+    const logout=()=>{
+        sessionStorage.clear();
+        localStorage.clear();
+        push('/');
+    }
     return (
-        <div>
-            <Link href="/">Home</Link>
-            <Link href="/user/login">Login</Link>
-            <Link href="/user/register">Register</Link>
+        <div className="px-4 flex items-center justify-between">
+            <div className="mx-4 flex items-center justify-between font-bold text-slate-700">
+                {userData.pic === null 
+                    ? <FaUserCircle size={40} className='text-slate-500 mr-4'/> 
+                    : <img src={userData.pic} className='mr-4 rounded-full' width={50} height={50}/>}
+                {!userData.name ? <p>{userData.email}</p> : <p>{userData.name}</p>}    
+            </div>
+            <button className="outline-0 bg-none border-none text-sky-400 hover:text-sky-600 transition duration-200"
+                onClick={logout}>
+                <FaPowerOff size={25}/>
+            </button>
         </div>
     )
 };

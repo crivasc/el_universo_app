@@ -5,7 +5,6 @@ import { HiOutlineUser } from "react-icons/hi";
 import { RiLock2Line } from 'react-icons/ri';
 import { FaGoogle, FaFacebookF, FaTwitter } from 'react-icons/fa';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
-
 import UserNav from '../../components/UserNav';
 import Notification from '../../components/Notification';
 //
@@ -61,6 +60,14 @@ const Login = () => {
       ).then((response) => {
         const user = response.user;
         sessionStorage.setItem('Token', user.accessToken);
+
+        const userData = {
+          'name':user.displayName,
+          'email':user.email,
+          'pic':user.photoURL
+        }
+
+        localStorage.setItem('UserData',JSON.stringify(userData));
         push('/')
       });
     } catch ({message}) {
@@ -76,6 +83,14 @@ const Login = () => {
         .then((response) => {
           const user = response.user;
           sessionStorage.setItem('Token', user.accessToken);
+          
+          const userData = {
+            'name':user.displayName,
+            'email':user.email,
+            'pic':user.photoURL
+          }
+
+          localStorage.setItem('UserData',JSON.stringify(userData));
           push('/')
         })
     } catch (error) {
@@ -110,11 +125,12 @@ const Login = () => {
           <Notification show={ShowNotification} message={Message} />
 
           <div className='form'>
-
+            {/*Header*/}
             <header className="flex items-center justify-end text-sky-400">
               <UserNav section={data.section} />
             </header>
-
+            {/***/}
+            {/*Section*/}
             <section>
               <div className="relative text-gray-400 hover:text-sky-600 mb-4">
                 <HiOutlineUser size={25} className='absolute left-0 top-2 transition duration-200' />
@@ -141,7 +157,8 @@ const Login = () => {
               </div>
 
             </section>
-
+            {/***/}
+            {/*Footer*/}
             <footer>
 
               <div className="flex items-center justify-between">
@@ -155,7 +172,7 @@ const Login = () => {
                 </div>
                 <Link href='/recover'><a className="border-dashed border-b-2 border-sky-600 text-sky-500 hover:text-sky-600">Recover password</a></Link>
               </div>
-
+              {/*Social*/}
               <div className="flex items-center justify-between mt-6 transition duration-200 text-gray-400 hover:text-sky-600">
                 <span>Iniciar con</span>
                 <div className='flex items-center justify-between grid grid-flow-col gap-4 text-gray-400'>
@@ -167,10 +184,11 @@ const Login = () => {
                   <Link href="/b"><a className="hover:text-blue-600 transition duration-200"><FaFacebookF size={30} /></a></Link>
                   <Link href="/c"><a className="hover:text-sky-400 transition duration-200"><FaTwitter size={35} /></a></Link>
                 </div>
+                {/***/}
               </div>
 
             </footer>
-
+            {/***/}
           </div>
         </div>
       </div>

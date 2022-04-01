@@ -40,6 +40,14 @@ const Register = () => {
       ).then((response) => {
         const user = response.user;
         sessionStorage.setItem('Token', user.accessToken);
+
+        const userData = {
+          'name':user.displayName,
+          'email':user.email,
+          'pic':user.photoURL
+        }
+
+        localStorage.setItem('UserData',JSON.stringify(userData));
         push('/')
       });
     } catch (error) {
@@ -61,6 +69,14 @@ const Register = () => {
         .then((response) => {
           const user = response.user;
           sessionStorage.setItem('Token', user.accessToken);
+
+          const userData = {
+            'name':user.displayName,
+            'email':user.email,
+            'pic':user.photoURL
+          }
+
+          localStorage.setItem('UserData',JSON.stringify(userData));
           push('/')
         })
     } catch (error) {
