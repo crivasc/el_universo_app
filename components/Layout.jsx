@@ -1,9 +1,7 @@
-import Nav from "./Nav";
-
 const Layout = ({children}) => {
     return (
         <>
-        <div>
+        <div> 
             {children}
         </div>
         </>

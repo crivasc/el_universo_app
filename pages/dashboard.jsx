@@ -7,8 +7,10 @@ import { useState, useEffect } from 'react';
 import AsideNav from '../components/AsideNav';
 import Nav from '../components/Nav';
 import { useRouter } from 'next/router';
+import Layout from '../components/Layout';
+import Noticias from './noticias';
 
-export default function Home() {
+export default function Dashboard() {
 
   const { push } = useRouter();
 
@@ -71,7 +73,11 @@ export default function Home() {
           </header>
           {/***/}
           {/*Bloque de contenidos*/}
-          <div className="content p-4">content</div>
+          <div className="content p-4">
+            <Layout>
+                <Noticias/>
+            </Layout>  
+          </div>
           {/***/}
           <footer className='absolute w-full bottom-0 bg-slate-300 text-center'>footer</footer>
         </section>
