@@ -1,7 +1,6 @@
 import { FaPowerOff } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import UserPic from "./UserPic";
 import {FaUserCircle} from 'react-icons/fa'
 
 const Nav = ({userData}) => {
@@ -21,7 +20,8 @@ const Nav = ({userData}) => {
                     : <img src={userData.pic} className='mr-4 rounded-full' width={50} height={50}/>}
                 {!userData.name ? <p>{userData.email}</p> : <p>{userData.name}</p>}    
             </div>
-            <button className="outline-0 bg-none border-none text-sky-400 hover:text-sky-600 transition duration-200"
+            <button title="Cerrar sesión"
+                className="outline-0 bg-none border-none text-sky-400 hover:text-sky-600 transition duration-200"
                 onClick={logout}>
                 <FaPowerOff size={25}/>
             </button>

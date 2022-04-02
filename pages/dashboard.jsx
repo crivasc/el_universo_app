@@ -64,7 +64,7 @@ export default function Dashboard() {
         <section className="bg-white w-full h-screen relative">
           {/*Header content*/}
           <header className='h-16 px-4 py-2 flex items-center justify-between border-b-2 border-slate-300'>
-            <button className="m-2 text-gray-600"
+            <button className="m-2 text-gray-600" title='Menu'
               onClick={handleSidebar}>
               {sidebar ? <HiMenuAlt2 size={35} /> : <HiMenu size={35} />}
             </button>
@@ -73,7 +73,7 @@ export default function Dashboard() {
           </header>
           {/***/}
           {/*Bloque de contenidos*/}
-          <div className="content p-4">
+          <div className="content">
             <Layout>
                 <Noticias/>
             </Layout>  
