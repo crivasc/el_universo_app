@@ -114,3 +114,8 @@
     flex-direction: column;
   }
 }
+
+.background{
+  background: url(../utils/guayaquil.jpg) center center no-repeat fixed;
+  background-size:cover;
+}

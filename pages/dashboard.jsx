@@ -7,8 +7,8 @@ import { useState, useEffect } from 'react';
 import AsideNav from '../components/AsideNav';
 import Nav from '../components/Nav';
 import { useRouter } from 'next/router';
-import Layout from '../components/Layout';
-import Noticias from './noticias';
+import Noticias from '../components/Noticias';
+import Redaction from '../components/Redaction';
 
 export default function Dashboard() {
 
@@ -35,6 +35,15 @@ export default function Dashboard() {
       setUserInfo(user)
     }
   }, []);
+
+  const [Bloque, setBloque] = useState('Noticias');
+
+  const handleMenu = (data) => {
+    setBloque()
+    setBloque(data);
+  };
+  
+
   return (
     <div className={`${!session && 'hidden'}`}>
       <Head>
@@ -57,7 +66,7 @@ export default function Dashboard() {
           <div className="py-6 text-slate-400 text-center">
             {!sidebar ? <MdDashboard size={35} className='mx-auto'/> : <h2 className='px-4'>Administración</h2>}  
           </div>
-          <AsideNav status={sidebar} section={section} /> 
+          <AsideNav status={sidebar} section={section} handleMenu={handleMenu}/> 
         </aside>
         {/***/}
         {/*Sección de contenidos*/}
@@ -74,9 +83,12 @@ export default function Dashboard() {
           {/***/}
           {/*Bloque de contenidos*/}
           <div className="content">
-            <Layout>
-                <Noticias/>
-            </Layout>  
+            <div className={Bloque=='Noticias' ? '' :'hidden'}>
+              <Noticias active={Bloque}/>  
+            </div>
+            <div className={Bloque=='Redacción' ? '' : 'hidden'}>
+              <Redaction/>  
+            </div>
           </div>
           {/***/}
           <footer className='absolute w-full bottom-0 bg-slate-300 text-center'>footer</footer>

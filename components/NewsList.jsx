@@ -1,9 +1,7 @@
-import { useState } from "react";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import ArticleItem from "./ArticleItem";
 
-const NewsList = ({notas}) => {   
-
-    //const [Notic, setNotic] = useState([]);
+const NewsList = ({notas, receive}) => {   
 
     return (
         <table className="w-full text-md text-left text-slate-500 dark:text-slate-600">
@@ -18,26 +16,11 @@ const NewsList = ({notas}) => {
                 </tr>
             </thead>
             <tbody>
-            {notas.map((nota, index)=>(
-                <tr key={nota.id}
-                className="border-b dark:bg-sky-100 dark:border-sky-100 odd:bg-white transition duration-200
-                    even:bg-sky-50 odd:dark:bg-sky-100 hover:dark:bg-sky-200 even:dark:bg-sky-50">
-                    <td className="py-4 text-center">{index + 1}</td>
-                    <td> <h2>{nota.title}</h2> </td>
-                    <td> <p>{nota.summary}</p> </td>
-                    <td> <p>{nota.section}</p> </td>
-                    <td> <p>{nota.autor}</p> </td>
-                    <td> 
-                        <div className="grid grid-cols-2 gap-2">
-                            <button className='text-slate-500 hover:text-green-600'>
-                                <FaEdit size={25}/>
-                            </button>
-                            <button className='text-slate-500 hover:text-red-700'>
-                                <FaTrashAlt size={25}/>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+            {notas.map((article, index)=>(
+                <ArticleItem key={article.id} 
+                    receive={receive}
+                    index={index} 
+                    article={article}/>
             ))}
             </tbody>
         </table>

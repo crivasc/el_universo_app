@@ -5,12 +5,13 @@ import {FaUserCircle} from 'react-icons/fa'
 
 const Nav = ({userData}) => {
 
-    const { push } = useRouter();   
+    const router = useRouter();   
 
     const logout=()=>{
         sessionStorage.clear();
         localStorage.clear();
-        push('/');
+        //push('/user/login');
+        router.reload(window.location.pathname)
     }
     return (
         <div className="px-4 flex items-center justify-between">
