@@ -10,28 +10,23 @@ const Redaction = ({usuario, create}) => {
 
     useEffect(() => {
         usuario.name ? setAuthor(usuario.name) : setAuthor(usuario.email)
-        
-        create == 'Redacción' 
-            ? setAccion('nuevo')
-            : setAccion('editar')
 
     }, [usuario]);
+
+    useEffect(() => {
+        create == 'Redacción' ? setAccion('nuevo') : setAccion('editar')
+    }, []);
 
     return (
         <div className="mb-6">
             <div className="px-6 pt-4 flex items-center justify-between">
                 <h1 className="font-bold text-slate-600 text-xl">Redacción</h1>
             </div>
-            <NewArticle className={``}
+            <NewArticle className={`${accion!='nuevo' && 'hidden'}`}
                 autor={Author}/>
-            <EditArticle  className={``}
+            <EditArticle  className={`${accion!='editar' && 'hidden'}`}
                 autor={Author}/>
         </div>
     )
 };
 export default Redaction;
-
-
-/*
-${accion!='nuevo' && 'hidden'}
-*/

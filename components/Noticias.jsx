@@ -41,7 +41,7 @@ const Noticias = ({active, handleMenu}) => {
     }
     const editar=(data)=>{
         //console.log(data)
-        handleMenu('Redación', data)
+        handleMenu('Redacción', data)
     }
     const Closer=()=>{
         setArticulo([])
