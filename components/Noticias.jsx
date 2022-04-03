@@ -24,10 +24,15 @@ const Noticias = ({active, handleMenu}) => {
         active!='Noticias' && Closer(); 
     }, [active]);
 
-    const receive=(data)=>{
+    const receive=(data,dtype)=>{
         const filt = data
         const nota = news.filter(x=>x.id == filt)
-        setArticulo(nota)
+        //setArticulo(nota)
+        dtype=='editar' ? editar(nota) : setArticulo(nota)
+    }
+    const editar=(data)=>{
+        console.log(data)
+        handleMenu('Redación',data)
     }
     const Closer=()=>{
         setArticulo([])

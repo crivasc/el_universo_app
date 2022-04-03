@@ -4,7 +4,7 @@ import {post} from '../../utils/HttpClient';
 
 import Notification from '../../components/Notification';
 
-const NewArticle = ({autor}) => {
+const EditArticle = ({autor}) => {
 
     const [title, setTitle] = useState('');
     const [summ, setSumm] = useState('');
@@ -152,4 +152,4 @@ const NewArticle = ({autor}) => {
         </>
     )
 };
-export default NewArticle;
+export default EditArticle;

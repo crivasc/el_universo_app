@@ -36,11 +36,17 @@ export default function Dashboard() {
     }
   }, []);
 
-  const [Bloque, setBloque] = useState('Redacción');
+  const [Bloque, setBloque] = useState('Noticias');
 
-  const handleMenu = (data) => {
+  const handleMenu = (data, artData) => {
+    
     setBloque()
-    setBloque(data);
+    if(artData== typeof undefined){
+      setBloque('Redacción')
+
+    }else{
+      setBloque(data);
+    }
   };
   
 
@@ -84,11 +90,11 @@ export default function Dashboard() {
           {/***/}
           {/*Bloque de contenidos*/}
           <div className="content">
-            <div className={Bloque=='Noticias' ? '' :'hidden'}>
+            <div className={Bloque=='Noticias' ? '' : 'hidden'}>
               <Noticias active={Bloque} handleMenu={handleMenu}/>  
             </div>
             <div className={Bloque=='Redacción' ? '' : 'hidden'}>
-              <Redaction usuario={userInfo}/>  
+              <Redaction usuario={userInfo} create={'Redacción'}/>  
             </div>
           </div>
           {/***/}

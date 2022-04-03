@@ -9,14 +9,16 @@ const ArticleItem = ({ article, index, receive}) => {
         even:bg-sky-50 odd:dark:bg-sky-100 hover:dark:bg-sky-200 even:dark:bg-sky-50">
             <td className="py-4 text-center">{index + 1}</td>
             <td>
-                <h2 className='cursor-pointer hover:text-slate-800' onClick={(e)=>receive(article.id)}>{article.title}</h2>
+                <h2 className='cursor-pointer hover:text-slate-800'
+                    onClick={(e)=>receive(article.id)}>{article.title}</h2>
             </td>
             <td> <p>{article.summary}</p> </td>
             <td> <p>{article.section}</p> </td>
             <td> <p>{article.autor}</p> </td>
             <td>
                 <div className="grid grid-cols-2 gap-2">
-                    <button className='text-slate-500 hover:text-green-600'>
+                    <button className='text-slate-500 hover:text-green-600'
+                         onClick={(e)=>receive(article.id,'editar')}>
                         <FaEdit size={25} />
                     </button>
                     <button className='text-slate-500 hover:text-red-700'>

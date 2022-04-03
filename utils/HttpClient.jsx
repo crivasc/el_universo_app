@@ -12,6 +12,5 @@ export const post = (data)=>{
         body: JSON.stringify(data)
     }
 
-    return fetch(API, request).then(res=>res.json())
-    .then(response=>console.log(response));
+    return fetch(API, request).then(res=>res.json());
 }
