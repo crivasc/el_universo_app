@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { FaTags, FaSave } from "react-icons/fa";
+import { FaTags, FaSave, FaTrashAlt } from "react-icons/fa";
+import {post} from '../../utils/HttpClient';
 
 const NewArticle = ({autor}) => {
 
@@ -25,6 +26,7 @@ const NewArticle = ({autor}) => {
         document.getElementById("tags").value = "";
     }
 
+
     const sendingTest=()=>{
         let data = { 
             title: title,
@@ -34,6 +36,7 @@ const NewArticle = ({autor}) => {
             section: sect,
             autor: aut
         }
+        post(data);   
     }
 
     return (
@@ -104,6 +107,18 @@ const NewArticle = ({autor}) => {
                     <FaTags size={20} className='absolute left-0 bottom-0' />
                     <span className="w-full pl-8 py-2">{tags.length > 1 ? tags+' ' : tags}</span>
                 </div>
+
+                <div className="flex items-center justify-center">
+                    <button className='mx-2 my-6 p-4 rounded-md bg-sky-500 hover:bg-green-600 
+                            text-white text-md transition duration-200 drop-shadow flex items-center justify-between'
+                        onClick={sendingTest}><FaSave size={20}/><span className="ml-2">Guardar</span>
+                    </button>
+                    <button className='mx-2 my-6 p-4 rounded-md bg-sky-500 hover:bg-red-600 
+                            text-white text-md transition duration-200 drop-shadow flex items-center justify-between'
+                        ><FaTrashAlt size={20}/><span className="ml-2">Borrar</span>
+                    </button>
+                        
+                </div>  
 
             </div>
         </>
