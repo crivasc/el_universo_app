@@ -1,4 +1,5 @@
 import { FaRegNewspaper, FaPenAlt } from 'react-icons/fa';
+import {ImQuill} from 'react-icons/im';
 import { useState } from 'react';
 
 const AsideNav = ({ status, section, handleMenu }) => {
@@ -22,7 +23,7 @@ const AsideNav = ({ status, section, handleMenu }) => {
                 <button title='Redacción' 
                     onClick={(e)=>handleMenu(e.target.textContent)}  
                     className={`w-full flex items-center ${status ? 'justify-start' : 'justify-center'}`}>
-                    <FaPenAlt size={25} /> <span className={`${`${!status && 'hidden'} ml-2`} ml-2`}>Redacción</span>
+                    <ImQuill size={25} /> <span className={`${`${!status && 'hidden'} ml-2`} ml-2`}>Redacción</span>
                 </button>
             </div>
         </>

@@ -9,12 +9,7 @@ const ArticleItem = ({ article, index, receive}) => {
         even:bg-sky-50 odd:dark:bg-sky-100 hover:dark:bg-sky-200 even:dark:bg-sky-50">
             <td className="py-4 text-center">{index + 1}</td>
             <td>
-                {/*<Link href="/article/[id]" as={`/article/${article.id}`} >
-                    <h2>{article.title}</h2>
-                </Link>*/}
-                    
-                <h2 aria-label={article.id} onClick={(e)=>receive(article.id)}>{article.title}</h2>
-                
+                <h2 className='cursor-pointer hover:text-slate-800' onClick={(e)=>receive(article.id)}>{article.title}</h2>
             </td>
             <td> <p>{article.summary}</p> </td>
             <td> <p>{article.section}</p> </td>

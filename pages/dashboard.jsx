@@ -36,7 +36,7 @@ export default function Dashboard() {
     }
   }, []);
 
-  const [Bloque, setBloque] = useState('Noticias');
+  const [Bloque, setBloque] = useState('Redacción');
 
   const handleMenu = (data) => {
     setBloque()
@@ -54,7 +54,7 @@ export default function Dashboard() {
       <main className="flex items-top justify-center">
         {/*Sidebar*/}
         <aside className={`${sidebar ? styles.open : styles.close} 
-              h-screen bg-slate-800`}>
+              h-screen bg-slate-800 relative`}>
 
           <div className={`h-16 bg-sky-500 text-white
               ${sidebar ? 'py-4 px-6 flex items-center justify-center' : 'p-4'} 
@@ -67,10 +67,11 @@ export default function Dashboard() {
             {!sidebar ? <MdDashboard size={35} className='mx-auto'/> : <h2 className='px-4'>Administración</h2>}  
           </div>
           <AsideNav status={sidebar} section={section} handleMenu={handleMenu}/> 
+          <footer className='absolute w-full bottom-0 bg-slate-700 text-center py-2 text-slate-400'>CVásconez</footer>
         </aside>
         {/***/}
         {/*Sección de contenidos*/}
-        <section className="bg-white w-full h-screen relative">
+        <section className="bg-white w-full h-screen relative overflow-y-auto">
           {/*Header content*/}
           <header className='h-16 px-4 py-2 flex items-center justify-between border-b-2 border-slate-300'>
             <button className="m-2 text-gray-600" title='Menu'
@@ -84,14 +85,13 @@ export default function Dashboard() {
           {/*Bloque de contenidos*/}
           <div className="content">
             <div className={Bloque=='Noticias' ? '' :'hidden'}>
-              <Noticias active={Bloque}/>  
+              <Noticias active={Bloque} handleMenu={handleMenu}/>  
             </div>
             <div className={Bloque=='Redacción' ? '' : 'hidden'}>
-              <Redaction/>  
+              <Redaction usuario={userInfo}/>  
             </div>
           </div>
           {/***/}
-          <footer className='absolute w-full bottom-0 bg-slate-300 text-center'>footer</footer>
         </section>
         {/***/}
       </main>
