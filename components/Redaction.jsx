@@ -11,7 +11,7 @@ const Redaction = ({usuario}) => {
     }, [usuario]);
 
     return (
-        <div>
+        <div className="mb-6">
             <div className="px-6 pt-4 flex items-center justify-between">
                 <h1 className="font-bold text-slate-600 text-xl">Redacción</h1>
                 
