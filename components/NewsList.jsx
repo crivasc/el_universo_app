@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ArticleItem from "./ArticleItem";
 
-const NewsList = ({notas, receive}) => {   
+const NewsList = ({notas, receive, reload}) => {   
 
     return (
         <table className="w-full text-md text-left text-slate-500 dark:text-slate-600">
@@ -19,6 +19,7 @@ const NewsList = ({notas, receive}) => {
             {notas.map((article, index)=>(
                 <ArticleItem key={article.id} 
                     receive={receive}
+                    reload={reload}
                     index={index} 
                     article={article}/>
             ))}

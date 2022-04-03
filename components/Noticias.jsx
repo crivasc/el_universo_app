@@ -8,10 +8,9 @@ import { Spinner } from './Spinner';
 const Noticias = ({active, handleMenu}) => {
 
     const [news, setNews] = useState([]);
-
     const [articulo, setArticulo] = useState([]);
-
     const [isLoading, setIsLoading] = useState(true)
+    //const [reStatus, setreStatus] = useState(false);
     
     useEffect(() => {
         get().then((data) => {
@@ -30,9 +29,19 @@ const Noticias = ({active, handleMenu}) => {
         //setArticulo(nota)
         dtype=='editar' ? editar(nota) : setArticulo(nota)
     }
+    const reload=(status)=>{
+        
+        if(status){ 
+            get().then((data) => {
+                setNews(data)
+                data.length && setIsLoading(false)
+            })
+        }
+       //console.log(status, reStatus)
+    }
     const editar=(data)=>{
-        console.log(data)
-        handleMenu('Redación',data)
+        //console.log(data)
+        handleMenu('Redación', data)
     }
     const Closer=()=>{
         setArticulo([])
@@ -49,7 +58,7 @@ const Noticias = ({active, handleMenu}) => {
                 </button>
             </div>
             <div className={`${articulo.length && 'hidden'}`}>
-                <NewsList notas={news} receive={receive}/>
+                <NewsList notas={news} receive={receive} reload={reload}/>
             </div>
             <div className={`${!articulo.length && 'hidden'}`}>
                 <div>

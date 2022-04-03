@@ -1,7 +1,21 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
-const ArticleItem = ({ article, index, receive}) => {
+import {del} from '../utils/HttpClient';
+
+const ArticleItem = ({ article, index, receive, reload}) => {
+
+    const router = useRouter();
+
+    const handleDel=(id)=>{
+
+        del(id).then((response)=>{
+            console.log(response)
+            reload(true)
+            response == 'Noticia borrada' && reload(false)
+        })
+    }
 
     return (
         <tr key={article.id}
@@ -21,7 +35,8 @@ const ArticleItem = ({ article, index, receive}) => {
                          onClick={(e)=>receive(article.id,'editar')}>
                         <FaEdit size={25} />
                     </button>
-                    <button className='text-slate-500 hover:text-red-700'>
+                    <button className='text-slate-500 hover:text-red-700'
+                        onClick={(e)=>handleDel(article.id)}>
                         <FaTrashAlt size={25} />
                     </button>
                 </div>

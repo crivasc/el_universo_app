@@ -41,7 +41,7 @@ export default function Dashboard() {
   const handleMenu = (data, artData) => {
     
     setBloque()
-    if(artData== typeof undefined){
+    if(artData!= typeof undefined){
       setBloque('Redacción')
 
     }else{

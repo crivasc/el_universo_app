@@ -22,10 +22,16 @@ const Redaction = ({usuario, create}) => {
             <div className="px-6 pt-4 flex items-center justify-between">
                 <h1 className="font-bold text-slate-600 text-xl">Redacción</h1>
             </div>
-            <NewArticle className={`${accion!='nuevo' && 'hidden'}`}
+            <NewArticle className={``}
                 autor={Author}/>
-            <EditArticle  className={`${accion!='editar' && 'hidden'}`}/>
+            <EditArticle  className={``}
+                autor={Author}/>
         </div>
     )
 };
 export default Redaction;
+
+
+/*
+${accion!='nuevo' && 'hidden'}
+*/
