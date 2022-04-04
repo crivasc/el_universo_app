@@ -25,10 +25,10 @@ const Noticias = ({active, handleMenu}) => {
     }, [active]);
 
     const receive=(data,dtype)=>{
-        const filt = data
-        const nota = news.filter(x=>x.id == filt)
+        //const filt = data
+        //const nota = news.filter(x=>x.id == filt)
         //setArticulo(nota)
-        dtype=='editar' ? editar(nota) : setArticulo(nota)
+        dtype=='editar' ? editar(data) : setArticulo(nota)
     }
     const reload=(status)=>{
         

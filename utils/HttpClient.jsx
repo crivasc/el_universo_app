@@ -1,6 +1,6 @@
 export const API = 'https://noticias-zyp-api.herokuapp.com/noticias';
 
-//Read
+//Read todo
 export const get = async()=>{
     return await fetch(API).then(res=>res.json());
 }
@@ -17,6 +17,11 @@ export const post = (data)=>{
     return fetch(API, request).then(res=>res.json());
 }
 
+//Read 
+export const getOne = async(id)=>{
+    return await fetch(API+'/'+id).then(res=>res.json());
+}
+
 //Update
 export const update = (data)=>{
 
@@ -28,7 +33,7 @@ export const update = (data)=>{
         body: JSON.stringify(data)
     }
 
-    return fetch(API+id, request).then(res=>res.json());
+    return fetch(API+'/'+id, request).then(res=>res.json());
 }
 
 //delete

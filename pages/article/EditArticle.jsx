@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { FaTags, FaSave, FaTrashAlt } from "react-icons/fa";
-import {put} from '../../utils/HttpClient';
+import {getOne, update} from '../../utils/HttpClient';
 
+import { Spinner } from '../../components/Spinner';
 import Notification from '../../components/Notification';
-import { data } from "autoprefixer";
+//import { data } from "autoprefixer";
 
 const EditArticle = ({datos}) => {
 
@@ -14,6 +15,8 @@ const EditArticle = ({datos}) => {
     const [tags, setTags] = useState([]);
     const [aut, setAut] = useState('');
 
+
+    const [isLoading, setIsLoading] = useState(true)
     const [Message, setMessage] = useState('');
     const [ShowNotification, setShowNotification] = useState(false);
 
@@ -29,15 +32,30 @@ const EditArticle = ({datos}) => {
         setAut(autor);
     }, [autor]);*/
 
-    const [nini, setNini] = useState({});
+    const [One, setOne] = useState('');
     useEffect(() => {
-        Array.isArray(data) && data.map((re)=>(setNini(re)))
-
-        load()
+        getOne(datos).then((data) => {
+            if(data.length){
+                setIsLoading(false);
+                setOne(data)
+                load();
+            }
+        })
+        //load()
     }, [datos]);
 
-    console.log(nini)
-
+    const load = () => {
+        if(One.length){
+            One.map(art=>(
+                document.getElementById("etitulo").value = art.title,
+                document.getElementById("eresumen").value = art.summary,
+                document.getElementById("edescripcion").value = art.description,
+                document.getElementById("eseccion").value = art.section,
+                document.getElementById("eautor").value = art.autor
+            ))
+        }
+    };
+    
 
     const [preTag, setpreTag] = useState('');
 
@@ -45,20 +63,16 @@ const EditArticle = ({datos}) => {
         //list.push(preTag)
         setTags([...tags, preTag]);
 
-        document.getElementById("tags").value = "";
-    }
-
-    const load=()=>{
-
-        
+        document.getElementById("etags").value = "";
     }
 
     const clear=()=>{
-        document.getElementById("titulo").value = "";
-        document.getElementById("resumen").value = "";
-        document.getElementById("descripcion").value = "";
-        document.getElementById("seccion").value = "";
-        document.getElementById("autor").value = "";
+        console.log('clear')
+        document.getElementById("etitulo").value = "";
+        document.getElementById("eresumen").value = "";
+        document.getElementById("edescripcion").value = "";
+        document.getElementById("eseccion").value = "";
+        document.getElementById("eautor").value = "";
         setTags([]);
     }
 
@@ -80,7 +94,7 @@ const EditArticle = ({datos}) => {
         //});
         
     }
-
+    if(isLoading){return <Spinner/> }
     return (
         <> 
             <div className="w-full bg-slate-200 p-4 py-2 text-md text-left text-slate-600">
@@ -94,7 +108,7 @@ const EditArticle = ({datos}) => {
                 <div className="relative text-sky-500 mb-4">
                     <label className="text-md">Titulo</label>
                     <input type="text"
-                    id='titulo'
+                    id='etitulo'
                     className="w-full text-gray-600 pl-8 py-2 border-solid border-b-2 focus:border-sky-500 border-gray-400 outline-none"
                     placeholder='Titulo' 
                     onChange={(e)=>setTitle(e.target.value)}/>
@@ -103,7 +117,7 @@ const EditArticle = ({datos}) => {
                 <div className="relative text-sky-500 mb-4">
                     <label className="text-md">Resumen</label>
                     <textarea cols="30" rows="10"
-                        id='resumen'
+                        id='eresumen'
                         className="w-full text-gray-600 pl-8 py-2 border-solid border-b-2 focus:border-sky-500 border-gray-400 outline-none"
                         placeholder='Resumen'
                         onChange={(e)=>setSumm(e.target.value)}>
@@ -113,7 +127,7 @@ const EditArticle = ({datos}) => {
                 <div className="relative text-sky-500 mb-4">
                     <label className="text-md">Descripción</label>
                     <textarea cols="30" rows="10"
-                        id='descripcion'
+                        id='edescripcion'
                         className="w-full text-gray-600 pl-8 py-2 border-solid border-b-2 focus:border-sky-500 border-gray-400 outline-none"
                         placeholder='Descripción'
                         onChange={(e)=>setDesc(e.target.value)}>
@@ -125,7 +139,7 @@ const EditArticle = ({datos}) => {
                     <div className="relative text-sky-500 mb-4">
                         <label className="text-md">Sección</label>
                         <input type="text"
-                        id='seccion'
+                        id='eseccion'
                         className="w-full text-gray-600 pl-8 py-2 border-solid border-b-2 focus:border-sky-500 border-gray-400 outline-none"
                         placeholder='Seccion' 
                         onChange={(e)=>setSect(e.target.value)}/>
@@ -135,7 +149,7 @@ const EditArticle = ({datos}) => {
                         <label className="text-md">tags</label>
                         <FaTags size={20} className='absolute left-0 bottom-3 transition duration-200' />
                         <input type="text"
-                        id="tags"
+                        id="etags"
                         name='tags'
                         className="w-full text-gray-600 px-8 py-2 border-solid border-b-2 focus:border-sky-500 border-gray-400 outline-none"
                         placeholder='Tags'
@@ -149,7 +163,7 @@ const EditArticle = ({datos}) => {
                 <div className="relative text-sky-500 mb-4">
                     <label className="text-md">Autor</label>
                     <input type="text"
-                    id='autor'
+                    id='eautor'
                     className="w-full text-gray-600 pl-8 py-2 border-solid border-b-2 focus:border-sky-500 border-gray-400 outline-none"
                     placeholder='Seccion' 
                     onChange={(e)=>setAut(e.target.value)}/>

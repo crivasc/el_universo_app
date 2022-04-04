@@ -6,7 +6,10 @@ import {del} from '../utils/HttpClient';
 
 const ArticleItem = ({ article, index, receive, reload}) => {
 
-    const router = useRouter();
+    const setres=(e)=>{
+        //console.log(article.id)
+        receive(article.id,'editar')
+    }
 
     const handleDel=(id)=>{
 
@@ -32,7 +35,7 @@ const ArticleItem = ({ article, index, receive, reload}) => {
             <td>
                 <div className="grid grid-cols-2 gap-2">
                     <button className='text-slate-500 hover:text-green-600'
-                         onClick={(e)=>receive(article.id,'editar')}>
+                         onClick={setres}>
                         <FaEdit size={25} />
                     </button>
                     <button className='text-slate-500 hover:text-red-700'

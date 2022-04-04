@@ -37,18 +37,23 @@ export default function Dashboard() {
   }, []);
 
   const [Bloque, setBloque] = useState('Noticias');
-  const [Info, setInfo] = useState({});
+  const [Info, setInfo] = useState('');
+  const [dodo, setDodo] = useState('');
 
   const handleMenu = (data, artData) => {
     //console.log(data, artData)
     setBloque()
-    if(artData=== typeof undefined){
-      setBloque(data)
-
+    if(data=='Noticias'){
+      setBloque(data);
+      setInfo('');
     }else{
       setBloque(data);
-      setInfo(artData)
+      setInfo(artData);
     }
+    if(artData){
+      setDodo('editar')
+    }else{
+      setDodo('nuevo')}
   };
   
 
@@ -96,7 +101,7 @@ export default function Dashboard() {
               <Noticias active={Bloque} handleMenu={handleMenu}/>  
             </div>
             <div className={Bloque=='Redacción' ? '' : 'hidden'}>
-              <Redaction usuario={userInfo} create={Bloque} info={Info}/>  
+              <Redaction usuario={userInfo} create={dodo} info={Info}/>  
             </div>
           </div>
           {/***/}

@@ -8,7 +8,7 @@ const AsideNav = ({ status, section, handleMenu }) => {
 
     const ubicador=(e)=>{
         const ubic = e.target.textContent;
-        handleMenu(ubic)
+        handleMenu(ubic,'')
         setSeccion(ubic)
     }
 

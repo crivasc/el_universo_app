@@ -16,12 +16,12 @@ const Redaction = ({usuario, create, info}) => {
 
     useEffect(() => {
 
-        if(info){
-            setAccion('editar')
+        if(create=='editar'){
+            //setAccion(create)
             setData(info)
         }else{
-            setAccion('nuevo')
-            setData(info)
+            //setAccion('nuevo')
+            setData('')
         }
         
     }, [info]);
@@ -33,10 +33,10 @@ const Redaction = ({usuario, create, info}) => {
             <div className="px-6 pt-4 flex items-center justify-between">
                 <h1 className="font-bold text-slate-600 text-xl">Redacción</h1>
             </div>
-            <div className={`${accion=='nuevo' ? accion : 'hidden'}`}>
+            <div className={`${create=='nuevo' ? '' : 'hidden'}`}>
                 <NewArticle autor={Author}/>
             </div>
-            <div className={`${accion=='editar' ? accion : 'hidden'}`}>
+            <div className={`${create=='editar' ? '' : 'hidden'}`}>
                 <EditArticle datos={data}/>
             </div>
             
