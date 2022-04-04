@@ -1,5 +1,10 @@
 import {FaTags} from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 const Article = ({article}) => {
+    const [tagList, settagList] = useState('');
+
+
+    console.log(article.tags)
     return (
         <>
             <header className='px-4 py-2 bg-slate-100 border-b-2 border-slate-300 text-left text-slate-400
@@ -23,4 +28,4 @@ const Article = ({article}) => {
     )
 };
 
-export default Article
+export default Article;

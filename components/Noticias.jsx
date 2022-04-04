@@ -1,7 +1,7 @@
 import {get} from '../utils/HttpClient';
 import { useState, useEffect } from "react";
 import NewsList from './NewsList';
-import Article from '../pages/article/[id]';
+import Article from './Article';
 import {ImQuill} from 'react-icons/im';
 import {RiCloseCircleFill} from 'react-icons/ri';
 import { Spinner } from './Spinner';
