@@ -7,7 +7,6 @@ import Notification from '../../components/Notification';
 //import { data } from "autoprefixer";
 
 const EditArticle = ({datos}) => {
-
     const [title, setTitle] = useState('');
     const [summ, setSumm] = useState('');
     const [desc, setDesc] = useState('');
@@ -45,8 +44,15 @@ const EditArticle = ({datos}) => {
     }, [datos]);
 
     const load = () => {
-        if(One.length){
-            One.map(art=>(
+        if(!isLoading){
+            
+            let sel = One.filter(x=>x.id==datos)
+            sel.map(art=>(
+                setTitle(art.title),
+                setSumm(art.summary),
+                setDesc(art.description),
+                setSect(art.section),
+                setAut(art.autor),
                 document.getElementById("etitulo").value = art.title,
                 document.getElementById("eresumen").value = art.summary,
                 document.getElementById("edescripcion").value = art.description,
@@ -66,8 +72,7 @@ const EditArticle = ({datos}) => {
         document.getElementById("etags").value = "";
     }
 
-    const clear=()=>{
-        console.log('clear')
+    const clear=(e)=>{
         document.getElementById("etitulo").value = "";
         document.getElementById("eresumen").value = "";
         document.getElementById("edescripcion").value = "";
@@ -77,8 +82,8 @@ const EditArticle = ({datos}) => {
     }
 
     const sendingTest=()=>{
-        let data = { 
-            id:datos.id,
+        let newData = { 
+            id:datos,
             title: title,
             summary: summ,
             description: desc,
@@ -87,11 +92,11 @@ const EditArticle = ({datos}) => {
             autor: aut
         }
         
-        //post(data).then(response=>{
-         //   showMessage(response);
-
-          //  clear()
-        //});
+        update(newData).then(response=>{
+            //console.log(response)
+            showMessage(response);
+            clear();
+        });
         
     }
     if(isLoading){return <Spinner/> }
@@ -165,7 +170,7 @@ const EditArticle = ({datos}) => {
                     <input type="text"
                     id='eautor'
                     className="w-full text-gray-600 pl-8 py-2 border-solid border-b-2 focus:border-sky-500 border-gray-400 outline-none"
-                    placeholder='Seccion' 
+                    placeholder='Autor' 
                     onChange={(e)=>setAut(e.target.value)}/>
                 </div> 
                 <div className='relative text-slate-500'>
@@ -176,11 +181,11 @@ const EditArticle = ({datos}) => {
                 <div className="flex items-center justify-center">
                     <button className='mx-2 my-6 p-4 rounded-md bg-sky-500 hover:bg-green-600 
                             text-white text-md transition duration-200 drop-shadow flex items-center justify-between'
-                        onClick={sendingTest}><FaSave size={20}/><span className="ml-2">Guardar</span>
+                        onClick={sendingTest}><FaSave size={20}/><span className="ml-2">Guardar cambios</span>
                     </button>
                     <button className='mx-2 my-6 p-4 rounded-md bg-sky-500 hover:bg-red-600 
                             text-white text-md transition duration-200 drop-shadow flex items-center justify-between'
-                        onClick={clear}><FaTrashAlt size={20}/><span className="ml-2">Borrar</span>
+                        onClick={clear}><FaTrashAlt size={20}/><span className="ml-2">Cancelar</span>
                     </button>
                         
                 </div>  

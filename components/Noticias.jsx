@@ -6,7 +6,7 @@ import {ImQuill} from 'react-icons/im';
 import {RiCloseCircleFill} from 'react-icons/ri';
 import { Spinner } from './Spinner';
 
-const Noticias = ({active, handleMenu}) => {
+const Noticias = ({active, handleMenu, ureload}) => {
 
     const [news, setNews] = useState([]);
     const [articulo, setArticulo] = useState([]);
@@ -25,11 +25,16 @@ const Noticias = ({active, handleMenu}) => {
     }, [active]);
 
     const receive=(data,dtype)=>{
-        //const filt = data
-        //const nota = news.filter(x=>x.id == filt)
+        const filt = data
+        const nota = news.filter(x=>x.id == filt)
         //setArticulo(nota)
         dtype=='editar' ? editar(data) : setArticulo(nota)
     }
+
+    useEffect(() => {
+        reload(ureload)
+    }, [ureload]);
+
     const reload=(status)=>{
         
         if(status){ 
@@ -41,7 +46,7 @@ const Noticias = ({active, handleMenu}) => {
        //console.log(status, reStatus)
     }
     const editar=(data)=>{
-        console.log(data)
+        //console.log(data)
         handleMenu('Redacción', data)
     }
     const Closer=()=>{

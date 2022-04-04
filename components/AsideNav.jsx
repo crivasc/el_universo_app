@@ -19,8 +19,9 @@ const AsideNav = ({ status, section, handleMenu }) => {
             `}>
                 <button title='Noticias'
                     onClick={ubicador} 
-                    className={` w-full flex items-center ${status ? 'justify-start' : 'justify-center'}`}>
-                    <FaRegNewspaper size={25}/> <span className={`${`${!status && 'hidden'} ml-2`} ml-2`}>Noticias</span>
+                    className={` w-full flex items-center relative ${status ? 'justify-start' : 'justify-center'}`}>
+                    <FaRegNewspaper size={25} className={`${status ? 'absolute left-0' : 'absolute left-3'}`}/> 
+                    <span className={`${!status ? 'opacity-0 ml-0' : 'ml-8'} relative z-20`}>Noticias</span>
                 </button>
             </div>
             <div className={`${status ? 'px-6 ' : 'px-4 text-center '}${seccion == 'Redacción' ? 'bg-gray-900' : ''}
@@ -28,8 +29,9 @@ const AsideNav = ({ status, section, handleMenu }) => {
             `}>
                 <button title='Redacción' 
                     onClick={ubicador}  
-                    className={`w-full flex items-center ${status ? 'justify-start' : 'justify-center'}`}>
-                    <ImQuill size={25} /> <span className={`${`${!status && 'hidden'} ml-2`} ml-2`}>Redacción</span>
+                    className={`w-full flex items-center relative ${status ? 'justify-start' : 'justify-center'}`}>
+                    <ImQuill size={25} className={`${status ? 'absolute left-0' : 'absolute left-3'}`} /> 
+                    <span className={`${!status ? 'opacity-0 ml-0' : 'ml-8 '} relative z-20`}>Redacción</span>
                 </button>
             </div>
         </>

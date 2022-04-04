@@ -39,6 +39,7 @@ export default function Dashboard() {
   const [Bloque, setBloque] = useState('Noticias');
   const [Info, setInfo] = useState('');
   const [dodo, setDodo] = useState('');
+  const [newsReload, setnewsReload] = useState(false);
 
   const handleMenu = (data, artData) => {
     //console.log(data, artData)
@@ -46,17 +47,25 @@ export default function Dashboard() {
     if(data=='Noticias'){
       setBloque(data);
       setInfo('');
+      relo();
     }else{
       setBloque(data);
       setInfo(artData);
+      relo();
     }
     if(artData){
       setDodo('editar')
     }else{
       setDodo('nuevo')}
   };
-  
 
+  const relo=()=>{
+    setnewsReload(true)
+    setTimeout(() => {
+      setnewsReload(false)
+    }, 1000);
+  }
+  
   return (
     <div className={`${!session && 'hidden'}`}>
       <Head>
@@ -98,7 +107,7 @@ export default function Dashboard() {
           {/*Bloque de contenidos*/}
           <div className="content">
             <div className={Bloque=='Noticias' ? '' : 'hidden'}>
-              <Noticias active={Bloque} handleMenu={handleMenu}/>  
+              <Noticias active={Bloque} handleMenu={handleMenu} ureload={newsReload}/>  
             </div>
             <div className={Bloque=='Redacción' ? '' : 'hidden'}>
               <Redaction usuario={userInfo} create={dodo} info={Info}/>  

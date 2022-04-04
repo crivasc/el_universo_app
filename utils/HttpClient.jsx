@@ -18,8 +18,8 @@ export const post = (data)=>{
 }
 
 //Read 
-export const getOne = async(id)=>{
-    return await fetch(API+'/'+id).then(res=>res.json());
+export const getOne = (id)=>{
+    return fetch(API+'/'+id).then(res=>res.json());
 }
 
 //Update

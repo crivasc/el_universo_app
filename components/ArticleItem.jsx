@@ -14,7 +14,7 @@ const ArticleItem = ({ article, index, receive, reload}) => {
     const handleDel=(id)=>{
 
         del(id).then((response)=>{
-            console.log(response)
+            //console.log(response)
             reload(true)
             response == 'Noticia borrada' && reload(false)
         })

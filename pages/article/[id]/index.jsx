@@ -11,7 +11,7 @@ const Article = ({article}) => {
             <div className='pt-4 text-justify'>
                 <p>{article.sumary}</p>
             </div>
-            <div className='pt-4 text-justify'>
+            <div className='pt-4 text-justify text-slate-500'>
                 <p>{article.description}</p>
             </div>
             <div className="w-full relative p-4 text-left text-slate-500 pl-8">
