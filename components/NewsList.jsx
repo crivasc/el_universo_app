@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ArticleItem from "./ArticleItem";
 
 const NewsList = ({notas, receive, reload}) => {   
+    console.log(notas)
 
     return (
         <table className="w-full text-md text-left text-slate-500 dark:text-slate-600">

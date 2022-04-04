@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import NewsList from './NewsList';
 import Article from '../pages/article/[id]';
 import {ImQuill} from 'react-icons/im';
+import {RiCloseCircleFill} from 'react-icons/ri';
 import { Spinner } from './Spinner';
 
 const Noticias = ({active, handleMenu}) => {
@@ -40,7 +41,7 @@ const Noticias = ({active, handleMenu}) => {
        //console.log(status, reStatus)
     }
     const editar=(data)=>{
-        //console.log(data)
+        console.log(data)
         handleMenu('Redacción', data)
     }
     const Closer=()=>{
@@ -60,9 +61,11 @@ const Noticias = ({active, handleMenu}) => {
             <div className={`${articulo.length && 'hidden'}`}>
                 <NewsList notas={news} receive={receive} reload={reload}/>
             </div>
-            <div className={`${!articulo.length && 'hidden'}`}>
-                <div>
-                    <button onClick={Closer}>Close</button>
+            <div className={`${!articulo.length && 'hidden'} p-4 relative mx-auto w-8/12`}>
+                <div className="float-right right-0">
+                    <button onClick={Closer}>
+                        <RiCloseCircleFill size={45} className="text-red-600 hover:text-red-700"/>    
+                    </button>
                 </div>
                 {
                     articulo.map((art)=>(

@@ -3,10 +3,11 @@ import EditArticle from "../pages/article/EditArticle";
 //import {FaSave, FaTrashAlt} from 'react-icons/fa';
 import { useEffect, useState } from "react";
 
-const Redaction = ({usuario, create}) => {
+const Redaction = ({usuario, create, info}) => {
     const [Author, setAuthor] = useState('');
 
     const [accion, setAccion] = useState('nuevo');
+    const [data, setData] = useState('');
 
     useEffect(() => {
         usuario.name ? setAuthor(usuario.name) : setAuthor(usuario.email)
@@ -14,18 +15,32 @@ const Redaction = ({usuario, create}) => {
     }, [usuario]);
 
     useEffect(() => {
-        create == 'Redacción' ? setAccion('nuevo') : setAccion('editar')
-    }, []);
+
+        if(info){
+            setAccion('editar')
+            setData(info)
+        }else{
+            setAccion('nuevo')
+            setData(info)
+        }
+        
+    }, [info]);
+
+    
 
     return (
         <div className="mb-6">
             <div className="px-6 pt-4 flex items-center justify-between">
                 <h1 className="font-bold text-slate-600 text-xl">Redacción</h1>
             </div>
-            <NewArticle className={`${accion!='nuevo' && 'hidden'}`}
-                autor={Author}/>
-            <EditArticle  className={`${accion!='editar' && 'hidden'}`}
-                autor={Author}/>
+            <div className={`${accion=='nuevo' ? accion : 'hidden'}`}>
+                <NewArticle autor={Author}/>
+            </div>
+            <div className={`${accion=='editar' ? accion : 'hidden'}`}>
+                <EditArticle datos={data}/>
+            </div>
+            
+            
         </div>
     )
 };

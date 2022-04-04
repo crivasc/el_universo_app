@@ -37,15 +37,17 @@ export default function Dashboard() {
   }, []);
 
   const [Bloque, setBloque] = useState('Noticias');
+  const [Info, setInfo] = useState({});
 
   const handleMenu = (data, artData) => {
-    console.log(data, artData)
+    //console.log(data, artData)
     setBloque()
     if(artData=== typeof undefined){
       setBloque(data)
 
     }else{
       setBloque(data);
+      setInfo(artData)
     }
   };
   
@@ -94,7 +96,7 @@ export default function Dashboard() {
               <Noticias active={Bloque} handleMenu={handleMenu}/>  
             </div>
             <div className={Bloque=='Redacción' ? '' : 'hidden'}>
-              <Redaction usuario={userInfo} create={Bloque}/>  
+              <Redaction usuario={userInfo} create={Bloque} info={Info}/>  
             </div>
           </div>
           {/***/}
